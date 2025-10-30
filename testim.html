@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Testimonial</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Stars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .testimonial-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 20px;
+      max-width: 600px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+
+    .testimonial-quote {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #f1f5f9;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .author-info {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    time {
+      display: block;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .rating i {
+      color: #facc15;
+      margin-left: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="testimonial-card">
+    <p class="testimonial-quote" id="testimonialText">
+      "Working with Abdul and the AWC Labs team transformed our analytics workflow — they delivered clear, scalable, and intelligent solutions that made our data systems future-ready."
+    </p>
+
+    <div class="testimonial-author">
+      <div class="author-info" id="testimonialRole">
+        – Adebambo Adeoye<br>
+        <span>Founder, Bularis C.E</span>
+        <time datetime="2025-10-30">Oct 30, 2025</time>
+      </div>
+
+      <!-- Rating: change data-rating="4.5" to your desired number -->
+      <div class="rating" data-rating="4.5"></div>
+    </div>
+  </article>
+
+  <script>
+    // Render stars dynamically
+    (function(){
+      const ratings = document.querySelectorAll('.rating');
+      ratings.forEach(container => {
+        const value = parseFloat(container.dataset.rating) || 0;
+        const max = 5;
+        container.innerHTML = '';
+        for (let i = 1; i <= max; i++) {
+          const star = document.createElement('i');
+          if (value >= i) star.className = 'fas fa-star';
+          else if (value >= i - 0.5) star.className = 'fas fa-star-half-alt';
+          else star.className = 'far fa-star';
+          container.appendChild(star);
+        }
+        const sr = document.createElement('span');
+        sr.className = 'sr-only';
+        sr.textContent = `${value} out of ${max} stars`;
+        container.appendChild(sr);
+      });
+    })();
+  </script>
+
+</body>
+</html>
